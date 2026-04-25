@@ -6,8 +6,8 @@ Reformulating the RL reward function for risk-aware portfolio optimization using
 
 $$r_t = R_t \;-\; \lambda \cdot R_t^{2} \;-\; \beta \cdot \max(0,\,-R_t)^{2}$$
 
-- **λ** — penalises return variance (both directions)
-- **β** — asymmetric downside penalty (losses hurt more than gains)
+- **λ**: penalises return variance (both directions)
+- **β**: asymmetric downside penalty (losses hurt more than gains)
 
 ---
 
@@ -15,14 +15,14 @@ $$r_t = R_t \;-\; \lambda \cdot R_t^{2} \;-\; \beta \cdot \max(0,\,-R_t)^{2}$$
 
 | Notebook | Description |
 |---|---|
-| `ppo_portfolio_baseline.ipynb` | Baseline — 200k timesteps, 3 risk configs, single seed |
-| `ppo_portfolio_enhanced.ipynb` | Enhanced — 1M timesteps, 4×4 grid search, 5 seeds, 80 total runs |
+| `ppo_portfolio_baseline.ipynb` | Baseline: 200k timesteps, 3 risk configs, single seed |
+| `ppo_portfolio_enhanced.ipynb` | Enhanced: 1M timesteps, 4×4 grid search, 5 seeds, 80 total runs |
 
 ---
 
 ## Dataset
 
-8 US stocks (AAPL, MSFT, GOOGL, JPM, XOM, JNJ, AMZN, TSLA) — 2013 to 2023  
+8 US stocks (AAPL, MSFT, GOOGL, JPM, XOM, JNJ, AMZN, TSLA): 2013 to 2023  
 Train: 2013–2020 | Test: 2021–2023
 
 ---
@@ -47,7 +47,7 @@ Train: 2013–2020 | Test: 2021–2023
 
 ## Results
 
-### Version 1 — Baseline (single seed, 200k timesteps)
+### Version 1: Baseline (single seed, 200k timesteps)
 
 | Strategy | Sharpe | Ann. Return | Max Drawdown |
 |---|---|---|---|
@@ -56,11 +56,11 @@ Train: 2013–2020 | Test: 2021–2023
 | PPO Moderate (λ=0.1, β=0.1) | 0.848 | 17.22% | -24.69% |
 | PPO High-Risk (λ=0.5, β=0.5) | **1.021** | **22.81%** | -25.31% |
 
-> Single seed — results are not statistically validated. Agents were undertrained (~30 episodes).
+> Single seed: results are not statistically validated. Agents were undertrained (~30 episodes).
 
 ---
 
-### Version 2 — Enhanced (5 seeds, 1M timesteps, full grid search)
+### Version 2: Enhanced (5 seeds, 1M timesteps, full grid search)
 
 **Key finding:** λ (variance penalty) improves risk-adjusted returns. β (downside penalty) becomes counterproductive beyond 0.3.
 
